@@ -10,6 +10,7 @@ When starting out a new report:
 1. `cp -R 0000_project-folder-template/ yyyy-mm-dd_a-good-title/` 
 1. `cd yyyy-mm-dd_a-good-title/`
 1. `trash ./*/.gitignore` to get rid of the `.gitignore` files that only exist so the directory structure of this template is preserved
+1. `trash README.md` - should only exist in the original template directory and is just notes to myself
 1. Change the name of the `report-template.rmd` file to something sensible
 1. Change the corresponding value of `WRITEUP` in the makefile
 1. Comment in/out the relevant things in the `.gitignore`
