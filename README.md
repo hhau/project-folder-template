@@ -6,17 +6,17 @@
 
 When starting out a new report:
 
-1. `in ~/some-folder-path/PhD/Projects/`, run `mk-dated-dir a good title`
+1. In `~/some-folder-path/PhD/Projects/`, run `mk-dated-dir a good title`
 1. `cp -R 0000_project-folder-template/ yyyy-mm-dd_a-good-title/` 
 1. `cd yyyy-mm-dd_a-good-title/`
-1. `trash ./*/.gitignore` to get rid of the `.gitignore` files that only exist so the directory structure of this template is preserved
-1. `trash ./.git` to remove this git repository and initialise one for the project
-1. `trash README.md` - should only exist in the original template directory and is just notes to myself
+1. Run `./run-me-after-copy.sh` which will:
+    - `trash ./*/.gitignore` to get rid of the `.gitignore` files that only exist so the directory structure of this template is preserved
+    - `trash ./.git` to remove this git repository and initialise one for the project
+    - `trash README.md` - should only exist in the original template directory and is just notes to myself
+    - `trash $0` delete itself
 1. Change the name of the `report-template.rmd` file to something sensible
 1. Change the corresponding value of `WRITEUP` in the makefile
 1. Comment in/out the relevant things in the `.gitignore`
-
-
 
 ### `Log/`
 
@@ -30,6 +30,10 @@ When starting out a new report:
     - Uncomment the relevant line in the `.gitignore`
     - Initialise a repository inside `package/packagename/`
     - Add as a submodule to the top level git repo
+        - Not easy: `git submodule add ./package/pkgname/ ./package/pkgname-sub`
+        - Can't avoid duping the submodule
+        - At least makes it easy to make `make` depend on the submodule and then rerun everything as a result of an update
+        - Whole idea seems a little over-the-top
     - `Make` will need to know when `git submodule update` is run (TODO: Figure this out)
 
 ### `plots/`
