@@ -2,7 +2,7 @@
 title: ""
 author: "Andrew Manderson"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-fontfamily: kpfonts
+fontfamily: tgpagella
 fontsize: 10pt
 papersize: a4
 geometry: margin=2.25cm
