@@ -6,20 +6,36 @@
 \usepackage{setspace}
 \onehalfspacing
 
+\usepackage{lineno}
+\linenumbers
+
 % pd stands for: probability distribution and is useful to distringuish
 % marignals for probabilities specifically p(p_{1}) and the like.
 \newcommand{\pd}{\text{p}}
 \newcommand{\q}{\text{q}}
+\newcommand{\w}{\text{w}}
 \newcommand{\pdr}{\text{r}}
-\newcommand{\pdrh}{\widehat{\text{r}}}
+\newcommand{\pdrh}{\hat{\text{r}}}
+
+% the q(x)w(x), "weighted target" density 
+% for the moment I'm going to call it s(x), as that is the next letter of the 
+% alphabet. Can change it later
+\newcommand{\s}{\text{s}}
+% direct density estimate - replaces lambda.
+\newcommand{\ddest}{\text{t}}
+
 
 % constants - usually sizes of things
 \newcommand{\Nx}{\text{N}_{x}}
 \newcommand{\Nnu}{\text{N}_{\text{nu}}}
 \newcommand{\Nde}{\text{N}_{\text{de}}}
 \newcommand{\Nmc}{\text{N}_{\text{mc}}}
+\newcommand{\Nw}{\text{N}_{\text{w}}}
 
 \newcommand{\xnu}{x_{\text{nu}}}
 \newcommand{\xde}{x_{\text{de}}}
 
-% \pagenumbering{gobble}
+% indices 
+\newcommand{\wfindex}{i}
+\newcommand{\sampleindex}{n}
+
