@@ -7,7 +7,10 @@
 \onehalfspacing
 
 \usepackage{lineno}
-\linenumbers
+% \linenumbers
+
+% required for landscape pages. beware, they back the build very slow.
+\usepackage{pdflscape}
 
 % pd stands for: probability distribution and is useful to distringuish
 % marignals for probabilities specifically p(p_{1}) and the like.
@@ -17,13 +20,15 @@
 \newcommand{\pdr}{\text{r}}
 \newcommand{\pdrh}{\hat{\text{r}}}
 
+% melding
+\newcommand{\ppoolphi}{\pd_{\text{pool}}(\phi)}
+
 % the q(x)w(x), "weighted target" density 
 % for the moment I'm going to call it s(x), as that is the next letter of the 
 % alphabet. Can change it later
 \newcommand{\s}{\text{s}}
 % direct density estimate - replaces lambda.
-\newcommand{\ddest}{\text{t}}
-
+\newcommand{\ddest}{\text{s}}
 
 % constants - usually sizes of things
 \newcommand{\Nx}{N}
@@ -31,11 +36,19 @@
 \newcommand{\Nde}{\text{N}_{\text{de}}}
 \newcommand{\Nmc}{\text{N}_{\text{mc}}}
 \newcommand{\Nw}{W}
+\newcommand{\Nm}{M}
 
+% locales - could switch to x and x'
 \newcommand{\xnu}{x_{\text{nu}}}
 \newcommand{\xde}{x_{\text{de}}}
+
+% sugiyama stuff
+\newcommand{\pdnu}{\pd_{\text{nu}}}
+\newcommand{\pdde}{\pd_{\text{de}}}
+
 
 % indices 
 \newcommand{\wfindex}{w}
 \newcommand{\sampleindex}{n}
+\newcommand{\modelindex}{m}
 
