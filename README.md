@@ -55,6 +55,12 @@ When starting out a new report:
 
 ### `tex-input/`
 
-- The `report-template.rmd` file makes liberal use of `\input{tex-input/a-tex-file.tex}`, for syntax highlighting / editor reasons.
-- The files here tend not to be in subdirectories (haven't written reports long enough to justify them), but I tend to name them as: `section-area-0010.tex` and the next `tex` in the subsection of the report is named `section-area-0020.tex` (because this makes it easier to come back later and add equations you forget, and I don't have any better ideas).
+- The `report-template.rmd` file makes liberal use of `\input{tex-input/\\d{4}-a-tex-file.tex}`, for syntax highlighting / editor reasons
+- The files here also tend to be in subdirectories, which I name after the section of the document
+- I name the file as: `0010-appropriate-filename.tex` and the next `tex`  file in the section of the report is named `0020-another-appropriate-file.tex`
+    - The label is then `(fig|eqn|tbl|alg):appropriate-filename`, so that I can easily remember the label names
+        - Sometimes this conflicts because you have `tex-input/example-one/0010-stage-one-target-posterior.tex`, and `tex-input/example-two/0010-stage-one-target-posterior.tex`
+        - Latex will helpfully tell you that you have nonunique labels defined
+        - Append some identifier to the label? Unsure 
+    - The zero padding on either side of the filename numbering is so that I can easily insert new files without renaming everything the ordering
 - The `tex-input/pre.tex` file contains all the things that `rmarkdown` / `knitr` put into the header of the resulting `report-template.tex` file
