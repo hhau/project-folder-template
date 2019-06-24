@@ -7,7 +7,7 @@ fontsize: 10pt
 papersize: a4
 geometry: margin=2.25cm
 bibliography: ../0bibliography/year-1-bib.bib
-csl: computational-statistics-and-data-analysis.csl
+csl: aam71-test.csl
 output: 
   pdf_document:
     includes:
