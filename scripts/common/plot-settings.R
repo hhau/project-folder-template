@@ -1,0 +1,66 @@
+library(ggplot2)
+
+# Theme settings
+theme_set(theme_classic())
+theme_replace(
+  panel.grid.major = element_line(),
+  panel.grid.minor = element_line(linetype = "dashed", size = rel(0.75)),
+  legend.text = element_text(size = rel(1.25)),
+  legend.title = element_text(size = rel(1.25))
+)
+
+# Colours - should all be darkest[1] to lightest[n] 
+blues <- c(
+  dark = "#00214F",
+  mid = "#2C7FB8",
+  light = "#A6E9FF"
+) 
+
+greens <- c(
+  "#364723",
+  "#557438",
+  "#749C4D",
+  "#98CD65"
+)
+
+## Burgundy(ish) red highlight
+highlight_col <- wesanderson::wes_palette("FantasticFox1")[5]
+
+# ggplot saving settings - @mbertolacci
+display_settings <- list(
+  full_page_plot_width = 15,
+  full_page_plot_height = 21,
+  half_page_plot_width = 7,
+  png_plot_dpi = 300,
+  highlight_colour = highlight_col
+)
+
+ggsave_base <- function(filename, plot, bg = 'transparent', ...) {
+  ggsave(
+    filename,
+    plot,
+    units = 'cm',
+    dpi = display_settings$png_plot_dpi,
+    bg = bg,
+    ...
+  )
+}
+
+ggsave_fullwidth <- function(filename, plot, ...) {
+  ggsave_base(
+    filename,
+    plot,
+    width = display_settings$full_page_plot_width,
+    ...
+  )
+}
+
+ggsave_fullpage <- function(filename, plot, adjust_height = 0, ...) {
+  ggsave_base(
+    filename,
+    plot,
+    width = display_settings$full_page_plot_width,
+    height = display_settings$full_page_plot_height + adjust_height,
+    ...
+  )
+}
