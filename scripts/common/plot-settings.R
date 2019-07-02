@@ -4,9 +4,9 @@ library(ggplot2)
 theme_set(theme_classic())
 theme_replace(
   panel.grid.major = element_line(),
-  panel.grid.minor = element_line(linetype = "dashed", size = rel(0.75)),
-  legend.text = element_text(size = rel(1.25)),
-  legend.title = element_text(size = rel(1.25))
+  panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3)),
+  legend.text = element_text(size = rel(1.1)),
+  legend.title = element_text(size = rel(1.1))
 )
 
 # Colours - should all be darkest[1] to lightest[n] 
@@ -31,6 +31,7 @@ display_settings <- list(
   full_page_plot_width = 15,
   full_page_plot_height = 21,
   half_page_plot_width = 7,
+  half_page_plot_height = 10,
   png_plot_dpi = 300,
   highlight_colour = highlight_col
 )
@@ -63,4 +64,18 @@ ggsave_fullpage <- function(filename, plot, adjust_height = 0, ...) {
     height = display_settings$full_page_plot_height + adjust_height,
     ...
   )
+}
+
+ggsave_halfheight <- function(filename, plot, ...) {
+  ggsave_base(
+    filename,
+    plot,
+    width = display_settings$full_page_plot_width,
+    height = display_settings$half_page_plot_height,
+    ...
+  )
+}
+
+parsed_map <- function(map) {
+  function(x) parse(text = map[x])
 }
