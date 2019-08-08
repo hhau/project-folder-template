@@ -13,10 +13,12 @@ git init
 # remove the REAMDE that is just for github
 trash README.md
 
-echo "Change the following things: \n
- 1: The name of the .rmd file
- 2: The name of the corresponding .tex file in the .gitignore 
- 3: The entry in the makefile called CHANGE-THIS.pdf \n"
+echo "
+  Change the following things: 
+    1: The name of the .rmd file
+    2: The name of the corresponding .tex file in the .gitignore 
+    3: The entry in the makefile called CHANGE-THIS.pdf 
+  "
 
 # delete itself
 trash $0
