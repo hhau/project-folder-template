@@ -12,3 +12,6 @@
 
 # the package directory - sometimes useful sometimes not
 #package/
+
+# the tex file for the rmd - useful for me, don't check into the repo
+report-template.tex

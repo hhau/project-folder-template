@@ -15,6 +15,7 @@ When starting out a new report:
     - `trash README.md` - should only exist in the original template directory and is just notes to myself
     - `trash $0` delete itself
 1. Change the name of the `report-template.rmd` file to something sensible
+    - Change the corresponding entry in the `.gitignore` for the `.tex` file
 1. Change the corresponding value of `WRITEUP` in the makefile
 1. Comment in/out the relevant things in the `.gitignore`
 
