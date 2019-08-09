@@ -6,7 +6,8 @@ TEX_FILES = $(wildcard tex-input/*.tex) \
 
 # if you wildcard the all-target, then nothing will happen if the target doesn't
 # exist (no target). hard code the target.
-WRITEUP = CHANGE-THIS.pdf
+# CHANGE THIS:
+WRITEUP = report-template.pdf
 
 all : $(WRITEUP)
 
