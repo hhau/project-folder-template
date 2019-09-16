@@ -4,6 +4,10 @@ TEX_FILES = $(wildcard tex-input/*.tex) \
 	$(wildcard tex-input/*/*.tex) \
 	$(wildcard tex-input/*/*/*.tex)
 
+# useful compound make components
+PLOTS = plots
+RDS = rds
+
 # if you wildcard the all-target, then nothing will happen if the target doesn't
 # exist (no target). hard code the target.
 # CHANGE THIS:

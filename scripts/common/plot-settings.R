@@ -1,4 +1,5 @@
 library(ggplot2)
+library(bayesplot)
 
 # Theme settings
 theme_set(theme_classic())
@@ -9,11 +10,19 @@ theme_replace(
   legend.title = element_text(size = rel(1.1))
 )
 
+bayesplot_theme_set(theme_classic())
+bayesplot_theme_replace(
+  panel.grid.major = element_line(),
+  panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3)),
+  legend.text = element_text(size = rel(1.1)),
+  legend.title = element_text(size = rel(1.1))
+)
+
 # Colours - should all be darkest[1] to lightest[n] 
 blues <- c(
-  dark = "#00214F",
-  mid = "#2C7FB8",
-  light = "#A6E9FF"
+  "#00214F",
+  "#2C7FB8",
+  "#A6E9FF"
 ) 
 
 greens <- c(
