@@ -5,6 +5,7 @@ trash ./*/.gitignore
 
 # the above misses the one in scripts/common
 trash ./scripts/common/.gitignore
+trash ./scripts/stan_files/.gitignore
 
 # delete the current git setup and initialise a new one
 trash ./.git
@@ -17,7 +18,8 @@ echo "
   Change the following things: 
     1: The name of the .rmd file
     2: The name of the corresponding .tex file in the .gitignore 
-    3: The entry in the makefile called CHANGE-THIS.pdf 
+    3: The entry in the makefile called BASENAME
+  These should all match. 
   "
 
 # delete itself
