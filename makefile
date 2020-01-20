@@ -17,6 +17,9 @@ WRITEUP = $(BASENAME).pdf
 
 all : $(WRITEUP)
 
+clean : 
+	trash $(BASENAME).aux $(BASENAME).out
+
 # knitr is becoming more picky about encoding, specify UTF-8 input
 $(WRITEUP) : $(wildcard *.rmd) $(TEX_FILES)
 	$(RSCRIPT) -e "rmarkdown::render(input = Sys.glob('*.rmd'), encoding = 'UTF-8')"
