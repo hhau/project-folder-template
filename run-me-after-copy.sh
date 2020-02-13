@@ -22,5 +22,7 @@ echo "
   These should all match. 
   "
 
+Rscript -e "renv::init()"
+
 # delete itself
 trash $0
