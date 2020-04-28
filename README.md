@@ -17,6 +17,7 @@ When starting out a new report:
 1. Change the name of the `report-template.rmd` file to something sensible
     - Change the corresponding entry in the `.gitignore` for the `.tex` file
 1. Change the corresponding value of `WRITEUP` in the makefile
+1. Change any other filenames containing `report-template`, `./run-me-after-copy.sh` will tell you what to change.
 1. Comment in/out the relevant things in the `.gitignore`
 
 ### `Log/`
@@ -34,7 +35,7 @@ When starting out a new report:
         - Not easy: `git submodule add ./package/pkgname/ ./package/pkgname-sub`
         - Can't avoid duping the submodule
         - At least makes it easy to make `make` depend on the submodule and then rerun everything as a result of an update
-        - Whole idea seems a little over-the-top
+        - _Whole idea seems a little over-the-top_
     - `Make` will need to know when `git submodule update` is run (TODO: Figure this out)
 
 ### `plots/`
