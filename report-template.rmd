@@ -6,7 +6,7 @@ fontfamily: tgpagella
 fontsize: 10pt
 papersize: a4
 geometry: margin=2.25cm
-bibliography: ../0bibliography/year-1-bib.bib
+bibliography: bibliography/report-template.bib
 csl: bibliography/american-statistical-association.csl
 output: 
   pdf_document:

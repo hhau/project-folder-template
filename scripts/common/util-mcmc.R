@@ -1,3 +1,5 @@
+library(coda)
+
 mcmc_list_to_array <- function(mcmc_list) {
   stopifnot(class(mcmc_list) == "mcmc.list")
   
@@ -22,4 +24,15 @@ mcmc_list_to_array <- function(mcmc_list) {
   
   return(results_array)
   
+}
+
+array_to_mcmc_list <- function(array) {
+  stopifnot(length(dim(array)) == 3)
+
+  n_chain <- dim(array)[2]
+  res <- lapply(1 : n_chain, function(chain_id) {
+    mcmc(array[ , chain_id, ])
+  })
+
+  return(as.mcmc.list(res))
 }
