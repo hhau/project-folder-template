@@ -1,5 +1,6 @@
 library(ggplot2)
 library(bayesplot)
+library(wesanderson)
 
 # Theme settings
 theme_set(theme_classic())
@@ -34,7 +35,7 @@ greens <- c(
 )
 
 ## Burgundy(ish) red highlight
-highlight_col <- wesanderson::wes_palette("FantasticFox1")[5]
+highlight_col <- wes_palette("FantasticFox1")[5]
 
 ## WHW colour gradient - 16 colours
 whw_pal_16 <- c(

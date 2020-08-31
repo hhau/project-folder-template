@@ -19,11 +19,10 @@ mcmc_list_to_array <- function(mcmc_list) {
   )
   
   for (chain_index in 1:n_chain) {
-    results_array[, chain_index,] <- results[[chain_index]]
+    results_array[ , chain_index,] <- results[[chain_index]]
   }
   
   return(results_array)
-  
 }
 
 array_to_mcmc_list <- function(array) {
