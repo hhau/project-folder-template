@@ -1,5 +1,5 @@
 RSCRIPT = Rscript
-PLOT_SETTINGS = scripts/common/plot-settings.R
+PLOT_SETTINGS = scripts/common/setup-ggplot-theme.R
 TEX_FILES = $(wildcard tex-input/*.tex) \
 	$(wildcard tex-input/*/*.tex) \
 	$(wildcard tex-input/*/*/*.tex)
