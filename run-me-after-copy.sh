@@ -25,7 +25,7 @@ echo "
     4: The name of the .bib file in bibliography/
       4.1: The path to the renamed bibliography in the .rmd file
   These should all match. 
-  "a
+  "
 
 # delete itself
 trash $0
