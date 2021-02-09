@@ -1,4 +1,10 @@
 library(coda)
+library(dplyr)
+library(ggplot2)
+library(bayesplot)
+library(patchwork)
+library(knitr)
+library(kableExtra)
 
 mcmc_list_to_array <- function(mcmc_list) {
   stopifnot(class(mcmc_list) == "mcmc.list")
@@ -34,4 +40,85 @@ array_to_mcmc_list <- function(array) {
   })
 
   return(as.mcmc.list(res))
+}
+
+# takes an Iter X chain X param array returns a ggplot
+plot_worst_pars <- function(
+  samples_array,
+  facet_name_value_pairs, # named vector, e.g. c('event_time' = 'italic(t)')
+  n_warmup = 1
+) {
+  numerical_diags <- rstan::monitor(samples_array, n_warmup, print = FALSE) %>%
+    as.data.frame()
+
+  worst_index <- c(
+    which.min(numerical_diags$Rhat),
+    which.min(numerical_diags$n_eff)
+  )
+  
+  current_names <- names(samples_array[1, 1, worst_index])
+  
+  # read str_replace_all doc VERY CAREFULLY! Caught out by this behaviour
+  # for the second time now.
+  ideal_names <- str_replace_all(current_names, facet_name_value_pairs)
+  names(ideal_names) <- current_names
+  my_lab <- as_labeller(ideal_names, label_parsed)
+
+  trace <- mcmc_trace(samples_array[, , worst_index]) + 
+    facet_wrap("parameter", ncol = 1, scales = "free_y", labeller = my_lab) + 
+    xlab("Iteration") +
+    theme(
+      legend.position = "none",
+      axis.text.x = element_text(size = rel(0.8)),
+      axis.text.y = element_text(size = rel(0.8))
+    ) +
+    bayesplot:::force_x_axis_in_facets()
+  
+  rank <- mcmc_rank_overlay(samples_array[, , worst_index], ref_line = TRUE) + 
+    facet_wrap("parameter", ncol = 1, labeller = my_lab) + 
+    theme(
+      axis.text.x = element_text(size = rel(0.8)),
+      axis.text.y = element_text(size = rel(0.8))
+    )
+  
+  trace + rank + plot_layout(guides = "collect")
+}
+
+# takes the same array as above, and some extra things, and writes
+# the appropriate latex table to a .tex file.
+write_diagnostics_to_file <- function(
+  samples_array,
+  row_latex_names,
+  output_filename,
+  monitor_cols = c("mean", "Q5", "Q95", "Rhat", "Bulk_ESS", "Tail_ESS"),
+  col_latex_names = c(
+    "Mean",
+    r"($q_{0.05}$)",
+    r"($q_{0.95}$)", 
+    r"($\widehat{R}$)", 
+    r"($\widehat{\text{ESS}}_{B}$)", 
+    r"($\widehat{\text{ESS}}_{T}$)"
+  ),
+  n_warmup = 1,
+  n_digits = 2,
+  ...
+) {
+  table <- rstan::monitor(samples_array, n_warmup, print = FALSE) %>%
+    as.data.frame() %>%
+    select(!!!monitor_cols)
+  
+  rownames(table) <- row_latex_names
+  formatted_kable <- kable(
+    table, 
+    format = "latex", 
+    digits = n_digits, 
+    col.names = col_latex_names,
+    escape = FALSE,
+    booktabs = T,
+    linesep = "",
+    ...
+  ) %>%
+    kable_styling(latex_options = "striped")
+  
+  invisible(cat(formatted_kable, file = output_filename))
 }
