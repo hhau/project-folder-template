@@ -52,11 +52,12 @@ plot_worst_pars <- function(
     as.data.frame()
 
   worst_index <- c(
-    which.min(numerical_diags$Rhat),
+    which.max(numerical_diags$Rhat),
     which.min(numerical_diags$n_eff)
   )
   
   current_names <- names(samples_array[1, 1, worst_index])
+  n_samples <- dim(samples_array)[1]
   
   # read str_replace_all doc VERY CAREFULLY! Caught out by this behaviour
   # for the second time now.
@@ -64,7 +65,7 @@ plot_worst_pars <- function(
   names(ideal_names) <- current_names
   my_lab <- as_labeller(ideal_names, label_parsed)
 
-  trace <- mcmc_trace(samples_array[, , worst_index]) + 
+  trace <- mcmc_trace(samples_array[(n_warmup + 1) : n_samples, , worst_index]) + 
     facet_wrap("parameter", ncol = 1, scales = "free_y", labeller = my_lab) + 
     xlab("Iteration") +
     theme(
