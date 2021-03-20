@@ -19,12 +19,12 @@ mcmc_list_to_array <- function(mcmc_list) {
     dim = c(n_iter, n_chain, n_par),
     dimnames = list(
       NULL,
-      sprintf("chain_%d", 1:n_chain),
+      sprintf("chain_%d", 1 : n_chain),
       par_names
     )
   )
   
-  for (chain_index in 1:n_chain) {
+  for (chain_index in 1 : n_chain) {
     results_array[ , chain_index,] <- results[[chain_index]]
   }
   
@@ -40,6 +40,11 @@ array_to_mcmc_list <- function(array) {
   })
 
   return(as.mcmc.list(res))
+}
+
+bind_named_sublists <- function(outer_list, name) {
+  lapply(outer_list, function(sub_list) sub_list[[name]]) %>% 
+    abind(along = 2)
 }
 
 # takes an Iter X chain X param array returns a ggplot
