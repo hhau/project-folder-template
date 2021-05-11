@@ -14,6 +14,9 @@
 # the package directory - sometimes useful sometimes not
 #package/
 
+# ignore renv library
+renv/
+
 # the tex file for the rmd - useful for me, don't check into the repo
 report-template.tex
 
@@ -21,6 +24,12 @@ report-template.tex
 *.aux
 *.out
 
-# 
+# the backup file produced by bibtex-tidy
+bibliography/*.bib.original
+
+# r files that accidentally get generated some times
 .RData
 .Rhistory
+
+# os files
+.DS_Store
