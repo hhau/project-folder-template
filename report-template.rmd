@@ -45,7 +45,8 @@ Concise summary
 \newpage
 
 <!-- Now switch to alphabetical numbering for the appendix, and reset the counter. -->
-\renewcommand{\thesection}{\Alph{section}}
-\setcounter{section}{0}
+\renewcommand{\thesubsection}{\Alph{subsection}}
 
-# Appendix 
+# Appendix {-}
+
+## Appendix A title
