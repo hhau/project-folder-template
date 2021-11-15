@@ -7,25 +7,21 @@ theme_set(theme_classic())
 theme_replace(
   panel.grid.major = element_line(),
   panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3)),
-  legend.text = element_text(size = rel(1)),
-  legend.title = element_text(size = rel(1)),
   strip.background = element_rect(fill = "#dee1e0")
 )
 
 bayesplot_theme_set(theme_classic())
 bayesplot_theme_replace(
   panel.grid.major = element_line(),
-  panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3)),
-  legend.text = element_text(size = rel(1)),
-  legend.title = element_text(size = rel(1))
+  panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3))
 )
 
-# Colours - should all be darkest[1] to lightest[n] 
+# Colours - should all be darkest[1] to lightest[n]
 blues <- c(
   "#00214F",
   "#2C7FB8",
   "#A6E9FF"
-) 
+)
 
 greens <- c(
   "#364723",

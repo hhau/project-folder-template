@@ -22,6 +22,7 @@
 \definecolor{mydarkblue}{RGB}{0, 33, 79}
 \definecolor{mymidblue}{RGB}{44, 127, 184}
 \definecolor{mylightblue}{RGB}{166, 233, 255}
+\definecolor{mygrey}{RGB}{68, 68, 68}
 
 \usepackage{accents}
 \newlength{\dhatheight}
@@ -32,6 +33,11 @@
     \smash{\hat{#1}}}}
 
 \setcounter{secnumdepth}{4}
+
+\renewcommand{\floatpagefraction}{0.95}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
 
 % pd stands for: probability distribution and is useful to distringuish
 % marignals for probabilities specifically p(p_{1}) and the like.
@@ -79,3 +85,12 @@
 \newcommand{\sampleindex}{n}
 \newcommand{\modelindex}{m}
 \newcommand{\stageindex}{s}
+
+% independce, set stuff
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\setcomp}{\mathsf{c}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
+\DeclareMathOperator*{\argmin}{arg\,min}
