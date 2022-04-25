@@ -1,6 +1,6 @@
-library(ggplot2)
-library(bayesplot)
-library(wesanderson)
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(bayesplot))
+suppressPackageStartupMessages(library(wesanderson))
 
 # Theme settings
 theme_set(theme_classic())

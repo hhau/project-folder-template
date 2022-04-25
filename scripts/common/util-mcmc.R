@@ -1,19 +1,19 @@
-library(coda)
-library(dplyr)
-library(ggplot2)
-library(bayesplot)
-library(patchwork)
-library(knitr)
-library(kableExtra)
+suppressPackageStartupMessages(library(coda))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(bayesplot))
+suppressPackageStartupMessages(library(patchwork))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
 
 mcmc_list_to_array <- function(mcmc_list) {
   stopifnot(class(mcmc_list) == "mcmc.list")
-  
+
   n_iter <- nrow(mcmc_list[[1]])
   n_par <- ncol(mcmc_list[[1]])
   n_chain <- length(mcmc_list)
   par_names <- dimnames(mcmc_list[[1]])[[2]]
-  
+
   results_array <- array(
     data = NA,
     dim = c(n_iter, n_chain, n_par),
@@ -23,11 +23,11 @@ mcmc_list_to_array <- function(mcmc_list) {
       par_names
     )
   )
-  
+
   for (chain_index in 1 : n_chain) {
     results_array[ , chain_index,] <- results[[chain_index]]
   }
-  
+
   return(results_array)
 }
 
@@ -43,7 +43,7 @@ array_to_mcmc_list <- function(array) {
 }
 
 bind_named_sublists <- function(outer_list, name) {
-  lapply(outer_list, function(sub_list) sub_list[[name]]) %>% 
+  lapply(outer_list, function(sub_list) sub_list[[name]]) %>%
     abind(along = 2)
 }
 
@@ -71,10 +71,10 @@ plot_worst_pars <- function(
       order(numerical_diags$Rhat, decreasing = TRUE)[2]
     )
   }
-  
+
   current_names <- names(samples_array[1, 1, worst_index])
   n_samples <- dim(samples_array)[1]
-  
+
   # read str_replace_all doc VERY CAREFULLY! Caught out by this behaviour
   # for the second time now.
   # the named vector behaviour of str_replace_all all is inconsistent
@@ -93,8 +93,8 @@ plot_worst_pars <- function(
   names(ideal_names) <- current_names
   my_lab <- as_labeller(ideal_names, label_parsed)
 
-  trace <- mcmc_trace(samples_array[(n_warmup + 1) : n_samples, , worst_index]) + 
-    facet_wrap("parameter", ncol = 1, scales = "free_y", labeller = my_lab) + 
+  trace <- mcmc_trace(samples_array[(n_warmup + 1) : n_samples, , worst_index]) +
+    facet_wrap("parameter", ncol = 1, scales = "free_y", labeller = my_lab) +
     xlab("Iteration") +
     theme(
       legend.position = "none",
@@ -102,14 +102,14 @@ plot_worst_pars <- function(
       axis.text.y = element_text(size = rel(0.8))
     ) +
     bayesplot:::force_x_axis_in_facets()
-  
-  rank <- mcmc_rank_overlay(samples_array[, , worst_index], ref_line = TRUE) + 
-    facet_wrap("parameter", ncol = 1, labeller = my_lab) + 
+
+  rank <- mcmc_rank_overlay(samples_array[, , worst_index], ref_line = TRUE) +
+    facet_wrap("parameter", ncol = 1, labeller = my_lab) +
     theme(
       axis.text.x = element_text(size = rel(0.8)),
       axis.text.y = element_text(size = rel(0.8))
     )
-  
+
   trace + rank + plot_layout(guides = "collect")
 }
 
@@ -123,9 +123,9 @@ write_diagnostics_to_file <- function(
   col_latex_names = c(
     "Mean",
     r"($q_{0.05}$)",
-    r"($q_{0.95}$)", 
-    r"($\widehat{R}$)", 
-    r"($\widehat{\text{ESS}}_{B}$)", 
+    r"($q_{0.95}$)",
+    r"($\widehat{R}$)",
+    r"($\widehat{\text{ESS}}_{B}$)",
     r"($\widehat{\text{ESS}}_{T}$)"
   ),
   n_warmup = 1,
@@ -135,12 +135,12 @@ write_diagnostics_to_file <- function(
   table <- rstan::monitor(samples_array, n_warmup, print = FALSE) %>%
     as.data.frame() %>%
     select(!!!monitor_cols)
-  
+
   rownames(table) <- row_latex_names
   formatted_kable <- kable(
-    table, 
-    format = "latex", 
-    digits = n_digits, 
+    table,
+    format = "latex",
+    digits = n_digits,
     col.names = col_latex_names,
     escape = FALSE,
     booktabs = T,
@@ -148,6 +148,6 @@ write_diagnostics_to_file <- function(
     ...
   ) %>%
     kable_styling(latex_options = "striped")
-  
+
   invisible(cat(formatted_kable, file = output_filename))
 }
