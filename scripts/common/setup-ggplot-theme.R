@@ -6,14 +6,14 @@ suppressPackageStartupMessages(library(wesanderson))
 theme_set(theme_classic())
 theme_replace(
   panel.grid.major = element_line(),
-  panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3)),
+  panel.grid.minor = element_line(linetype = "dashed", linewidth = rel(2/3)),
   strip.background = element_rect(fill = "#dee1e0")
 )
 
 bayesplot_theme_set(theme_classic())
 bayesplot_theme_replace(
   panel.grid.major = element_line(),
-  panel.grid.minor = element_line(linetype = "dashed", size = rel(2/3))
+  panel.grid.minor = element_line(linetype = "dashed", linewidth = rel(2/3))
 )
 
 # Colours - should all be darkest[1] to lightest[n]
